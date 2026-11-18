@@ -11,17 +11,18 @@
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="./css/cadastro-login.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fredoka:wght@300..700&display=swap"
+    rel="stylesheet">
 </head>
 
-<body onload="listar()">
+<body>
   <div class="header">
     <div class="paginas">
       <ul class="horizontal">
         <li><a href="index.html">Página Inicial</a></li>
-        <li><a href="sobre.html"></a>Sobre o Tênis</a></li>
-        <li><a href="menu_jogo.html"></a>Simule seu jogo</a></li>
+        <li><a href="sobre.html">Sobre o Tênis</a></li>
       </ul>
     </div>
     <div class="logo-header">
@@ -50,7 +51,8 @@
         </div>
         <div class="campo">
           <span>Senha:</span>
-          <input id="ipt_senha" type="password" placeholder="Digite sua senha">
+          <input id="ipt_senha" type="password" placeholder="Digite sua senha" onkeyup="aviso()">
+          <div id="div_msg"></div>
         </div>
         <div class="campo">
           <span>Confirme a senha:</span>
@@ -79,31 +81,43 @@
 
 <script>
 
+
+  function aviso() {
+
+    div_msg.innerHTML = `A senha deve ter:<br>
+    - Um número (1, 2, 3...)<br>
+    - Uma letra maiúscula<br>
+    - Mínimo de 8 caracteres`
+
+  }
+
+
+
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
 
   function cadastrar() {
+
     // aguardar();
+
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = ipt_nome.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
+    var emailVar = ipt_email.value;
+    var senhaVar = ipt_senha.value;
     var confirmacaoSenhaVar = ipt_conf_senha.value;
-    var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      confirmacaoSenhaVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "Preencha o campo que está vazio";
 
       finalizarAguardar();
       return false;
@@ -111,17 +125,24 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
+    var tamanhoOk = senhaVar.length >= 8;
+    var temMaiuscula = senhaVar != senhaVar.toLowerCase();
+
+    if (!tamanhoOk || !temMaiuscula) {
+      var mensagem = "A senha precisa ter:\n";
+      if (!tamanhoOk) {
+        mensagem += "- No mínimo 8 caracteres\n";
       }
+      if (!temMaiuscula) {
+        mensagem += "- Uma letra maiúscula\n";
+      }
+      alert(mensagem);
+      return false;
+    }
+
+    if (senhaVar != confirmacaoSenhaVar) {
+      alert("As senhas não coincidem.");
+      return false;
     }
 
     // Enviando o valor da nova input
@@ -136,7 +157,6 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
       }),
     })
       .then(function (resposta) {
@@ -164,26 +184,6 @@
       });
 
     return false;
-  }
-
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
   }
 
   function sumirMensagem() {
