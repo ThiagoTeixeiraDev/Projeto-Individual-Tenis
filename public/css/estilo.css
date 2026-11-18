@@ -36,6 +36,7 @@ h2 {
 
 .logo-header img {
   height: 35px;
+  display: block;
 }
 
 .horizontal {
@@ -55,6 +56,15 @@ h2 {
   width: 350px;
   display: flex;
   justify-content: right;
+}
+
+.paginas,
+.cadastro {
+  flex: 1;
+}
+
+.cadastro .horizontal {
+  justify-content: flex-end;
 }
 
 .parte-inicial {
