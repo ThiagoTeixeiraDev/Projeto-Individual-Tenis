@@ -1,4 +1,4 @@
-var empresaModel = require("../models/empresaModel");
+var usuarioModel = require("../models/usuarioModel");
 
 function buscarPorCnpj(req, res) {
   var cnpj = req.query.cnpj;
