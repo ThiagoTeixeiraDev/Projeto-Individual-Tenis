@@ -6,11 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
+    <title>TMT Tênis | Dashboards</title>
 
-    
+
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fredoka:wght@300..700&display=swap"
+        rel="stylesheet">
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
@@ -30,49 +34,51 @@
 
 <body>
 
-    <div class="janela">
-        <div class="header-left">
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+    <div class="side-bar">
+        <aside class="header-left">
+            <div class="sidebar-topo">
+                <img src="../assets/imgs/logo.png" alt="Logo TMT Tênis">
+                <div class="ola">
+                    <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                </div>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários e Terrários</h3>
+            <nav class="sidebar-nav">
+                <a href="./cards.html" class="btn-nav">
+                    <h3>Quiz 1x1</h3>
                 </a>
-            </div>
-
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
+                <a href="./graficos.html" class="btn-nav ativo">
+                    <h3>Gráficos</h3>
+                </a>
+                <a href="./mural.html" class="btn-nav">
                     <h3>Mural de Avisos</h3>
                 </a>
-            </div>
+            </nav>
 
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
+        </aside>
 
-        </div>
-
-        <div class="dash">
-            <div id="alerta">
-            </div>
-
+        <main class="dash">
+            <div id="alerta"></div>
             <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco -->
             </div>
-            <div id="graficos">
-            </div>
-        </div>
+            <div id="graficos"></div>
+        </main>
     </div>
+
+    <div class="dash">
+        <header class="dash-banner quadra">
+            <div>
+                <h1>Estatísticas da Quadra</h1>
+                <p>Acompanhe sua evolução nos quizzes, taxa de acertos e ranking entre os jogadores.</p>
+            </div>
+        </header>
+    </div>
+
+
 
 
 </body>
@@ -204,13 +210,13 @@
         let dados = {
             labels: labels,
             datasets: [
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
+                {
+                    label: 'Temperatura',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(199, 52, 52)',
+                    tension: 0.1
+                }]
         };
 
         console.log('----------------------------------------------')
