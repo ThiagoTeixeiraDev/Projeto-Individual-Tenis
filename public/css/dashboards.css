@@ -51,7 +51,7 @@ h1, h2 {
 }
 
 .header-left img {
-  height: 40px;
+  height: 30px;
   display: block;
 }
 
@@ -211,4 +211,40 @@ h1, h2 {
 
 .kpi-detalhe.positivo {
   font-weight: 700;
+}
+
+.grafico-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.grafico-card{
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 2px solid #0d5334;
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 #0d5334;
+}
+
+.grafico-largo{
+  grid-column: span 2;
+}
+
+.grafico-topo h3{
+  font-size: 1.2rem;
+  color: #072b19;
+}
+
+.badge-tema{
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: #f3f6ec;
+  border: 2px solid #0d5334;
+  border-radius: 20px;
 }

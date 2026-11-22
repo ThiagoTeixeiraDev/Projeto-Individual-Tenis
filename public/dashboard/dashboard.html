@@ -91,9 +91,44 @@
                 <div class="kpi-card">
                     <span class="kpi-label">Pergunta Mais Difícil</span>
                     <h2 class="kpi-valor" id="kpi_dificil">7</h2>
-                    <span class="kpi-detalhe" id="kpi_dificil_detalhe"> seguidas</span>
+                    <span class="kpi-detalhe" id="kpi_dificil_detalhe"></span>
                 </div>
             </div>
+
+            <div class="grafico-grid">
+
+                <div class="grafico-card grafico-largo">
+                    <div class="grafico-topo">
+                        <h3>Taxa de Acerto por Dia</h3>
+                        <span class="badge-tema">Últimos 7 dias</span>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="graficoDias"></canvas>
+                    </div>
+                </div>
+
+                <div class="grafico-card">
+                    <div class="grafico-topo">
+                        <h3>Desempenho por Pergunta</h3>
+                        <span class="badge-tema">Quiz</span>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="graficoTemas"></canvas>
+                    </div>
+                </div>
+
+                <div class="grafico-card">
+                    <div class="grafico-topo">
+                        <h3>Acertos e Erros</h3>
+                        <span class="badge-tema">Geral</span>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="graficoAcertos"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
 
 
 </body>
