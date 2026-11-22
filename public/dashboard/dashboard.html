@@ -34,51 +34,66 @@
 
 <body>
 
-    <div class="side-bar">
-        <aside class="header-left">
+    <div class="janela">
+
+        <div class="header-left">
             <div class="sidebar-topo">
                 <img src="../assets/imgs/logo.png" alt="Logo TMT Tênis">
-                <div class="ola">
+                <div class="hello">
                     <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
                 </div>
             </div>
 
-            <nav class="sidebar-nav">
-                <a href="./cards.html" class="btn-nav">
+            <div class="sidebar-nav">
+                <a href="../quiz.html" class="btn-nav">
                     <h3>Quiz 1x1</h3>
                 </a>
-                <a href="./graficos.html" class="btn-nav ativo">
+                <a href="./dashboard.html" class="btn-nav ativo">
                     <h3>Gráficos</h3>
                 </a>
-                <a href="./mural.html" class="btn-nav">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </nav>
+            </div>
 
-            <div class="btn-logout" onclick="limparSessao()">
+            <div class="btn-logout" onclick="sair()">
                 <h3>Sair</h3>
             </div>
-        </aside>
+        </div>
 
-        <main class="dash">
-            <div id="alerta"></div>
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco -->
+        <div class="dash">
+
+            <div class="dash-banner quadra">
+                <div>
+                    <h1>Estatísticas da Quadra</h1>
+                    <p>Acompanhe sua evolução nos quizzes, taxa de acertos e ranking entre os jogadores.</p>
+                </div>
+                <div class="btns-dash">
+                </div>
             </div>
-            <div id="graficos"></div>
-        </main>
-    </div>
 
-    <div class="dash">
-        <header class="dash-banner quadra">
-            <div>
-                <h1>Estatísticas da Quadra</h1>
-                <p>Acompanhe sua evolução nos quizzes, taxa de acertos e ranking entre os jogadores.</p>
+            <div class="kpis-grid">
+                <div class="kpi-card">
+                    <span class="kpi-label">Partidas no Quiz 1x1</span>
+                    <h2 class="kpi-valor" id="kpi_partidas">28</h2>
+                    <span class="kpi-detalhe positivo">+4 esta semana</span>
+                </div>
+
+                <div class="kpi-card destaque-amarelo">
+                    <span class="kpi-label">Taxa de Vitória</span>
+                    <h2 class="kpi-valor" id="kpi_vitorias">71%</h2>
+                    <span class="kpi-detalhe">20 vitórias · 8 derrotas</span>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-label">Precisão nos Saques (Acertos)</span>
+                    <h2 class="kpi-valor" id="kpi_acertos">84%</h2>
+                    <span class="kpi-detalhe positivo">Acima da média (72%)</span>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-label">Melhor Sequência</span>
+                    <h2 class="kpi-valor" id="kpi_sequencia">7</h2>
+                    <span class="kpi-detalhe">Vitórias seguidas</span>
+                </div>
             </div>
-        </header>
-    </div>
-
-
 
 
 </body>
