@@ -245,54 +245,83 @@ h2 {
 }
 
 .enunciado {
-  font-size: 1.45rem;
-  color: #072b19;
+    font-size: 1.45rem;
+    color: #072b19;
 }
 
 .opcoes-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
 }
 
 .opcao-btn {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  text-align: left;
-  font-family: "Fredoka", sans-serif;
-  font-size: 1.02rem;
-  font-weight: 500;
-  color: #0d5334;
-  background-color: #ffffff;
-  border: 2px solid #0d5334;
-  border-radius: 12px;
-  padding: 16px 18px;
-  box-shadow: 4px 4px 0 #0d5334;
-  cursor: pointer;
-  transition: transform 0.18s ease, background-color 0.18s ease;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    text-align: left;
+    font-family: "Fredoka", sans-serif;
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: #0d5334;
+    background-color: #ffffff;
+    border: 2px solid #0d5334;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 4px 4px 0 #0d5334;
+    cursor: pointer;
+    transition: transform 0.18s ease, background-color 0.18s ease;
 }
 
 .opcao-btn:hover:not(:disabled) {
-  transform: translateY(-3px);
-  background-color: #f3f6ec;
+    transform: translateY(-3px);
+    background-color: #f3f6ec;
 }
 
 .opcao-btn:disabled {
-  cursor: default;
+    cursor: default;
 }
 
 .opcao-letra {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background-color: #f3f6ec;
-  border: 2px solid #0d5334;
-  font-family: "Archivo Black", sans-serif;
-  font-size: 0.9rem;
-  color: #072b19;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background-color: #f3f6ec;
+    border: 2px solid #0d5334;
+    font-family: "Archivo Black", sans-serif;
+    font-size: 0.9rem;
+    color: #072b19;
+}
+
+.btn-iniciar {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #072b19;
+    border: 2px solid #0d5334;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 #0d5334;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-proximo{
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #072b19;
+    background-color: #ffffff;
+    border: 2px solid #0d5334;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 #0d5334;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+    margin-top: 10px;
 }
