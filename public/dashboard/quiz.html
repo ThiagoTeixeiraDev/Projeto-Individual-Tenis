@@ -105,30 +105,63 @@
     const listaDeQuestoes = [
 
         {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
-            alternativaCorreta: "alternativaC"
+            pergunta: "Qual é a sequência correta de pontos dentro de um game tradicional no tênis?",
+            alternativaA: "10, 20, 30, Game",
+            alternativaB: "15, 30, 40, Game",
+            alternativaC: "15, 25, 50, Game",
+            alternativaD: "1, 2, 3, Game",
+            alternativaCorreta: "alternativaB",
+            explicacao: "A contagem tradicional de um game é 0, 15, 30, 40 e o ponto seguinte fecha o game."
         },
 
         {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Quando o placar de um game chega empatado em 40 a 40, como esse momento é chamado?",
+            alternativaA: "Tie-break",
+            alternativaB: "Match point",
+            alternativaC: "Deuce (iguais)",
+            alternativaD: "Let",
+            alternativaCorreta: "alternativaC",
+            explicacao: "O empate em 40-40 é chamado de Deuce. Depois dele, o jogador precisa fazer vantagem e mais um ponto."
         },
 
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Em qual superfície é disputado o torneio de Roland Garros, na França?",
+            alternativaA: "Saibro (terra batida)",
+            alternativaB: "Grama",
+            alternativaC: "Quadra rápida (asfáltica)",
+            alternativaD: "Carpete indoor",
+            alternativaCorreta: "alternativaA",
+            explicacao: "Roland Garros é jogado no saibro, um piso mais lento que deixa as trocas de bola mais longas."
+        },
+
+        {
+            pergunta: "O que acontece quando a bola sacada toca a fita superior da rede e cai na área certa?",
+            alternativaA: "Ponto direto para quem sacou",
+            alternativaB: "Falta dupla automática",
+            alternativaC: "Ponto para o adversário",
+            alternativaD: "Let — o saque é repetido sem penalidade",
+            alternativaCorreta: "alternativaD",
+            explicacao: "Quando encosta na rede e cai certo, dá 'Let' e o saque é repetido."
+        },
+
+        {
+            pergunta: "Quantos games um jogador precisa vencer (com 2 de diferença) para ganhar um set padrão?",
+            alternativaA: "4 games",
+            alternativaB: "5 games",
+            alternativaC: "6 games",
+            alternativaD: "8 games",
+            alternativaCorreta: "alternativaC",
+            explicacao: "Um set comum vai até 6 games (por exemplo, 6-4)."
+        },
+
+        {
+            pergunta: "Como é chamado o golpe dado antes de a bola quicar no chão, perto da rede?",
+            alternativaA: "Voleio",
+            alternativaB: "Lob",
+            alternativaC: "Drop shot",
+            alternativaD: "Slice",
+            alternativaCorreta: "alternativaA",
+            explicacao: "O voleio é feito no ar, antes de a bola quicar no piso."
         }
 
     ]
@@ -144,7 +177,9 @@
 
     function onloadEsconder() {
         document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('progresso').style.display = "none"
         document.getElementById('jogo').style.display = "none"
+        document.getElementById('pontuacaoFinalJogo').style.display = "none"
     }
 
     function iniciarQuiz() {
