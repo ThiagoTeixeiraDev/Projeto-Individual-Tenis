@@ -236,6 +236,7 @@
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
+    let respostasQuiz = [];
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
@@ -355,6 +356,10 @@
 
                 boxFeedback.className = "feedback-box acerto"
                 textoFeedback.innerHTML = "<b>Ponto seu!</b> " + questaoAtual.explicacao
+                respostasQuiz.push({
+                    pergunta: numeroDaQuestaoAtual + 1,
+                    acertou: 1
+                });
                 numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
@@ -366,6 +371,10 @@
 
                 boxFeedback.className = "feedback-box erro"
                 textoFeedback.innerHTML = "<b>Bola fora!</b> " + questaoAtual.explicacao
+                respostasQuiz.push({
+                    pergunta: numeroDaQuestaoAtual + 1,
+                    acertou: 0
+                });
                 numeroDaQuestaoAtual++
             }
         })
@@ -397,6 +406,7 @@
     }
 
     function finalizarJogo() {
+        console.log(respostasQuiz);
         const porcentagemFinalDeAcertos = certas / quantidadeDeQuestoes
         const aproveitamento = Math.round(porcentagemFinalDeAcertos * 100)
 
