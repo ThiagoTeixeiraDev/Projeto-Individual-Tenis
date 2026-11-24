@@ -196,6 +196,58 @@
             });
     }
 
+
+    function plotarGrafico(resposta) {
+        console.log('Iniciando plotagem do gráfico de desempenho por dia...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Taxa de Acerto (%)',
+                    data: [],
+                    fill: true,
+                    borderColor: '#0d5334',
+                    backgroundColor: 'rgba(13, 83, 52, 0.15)',
+                    tension: 0.3
+                }]
+        };
+
+        for (let i = 0; i < resposta.length; i++) {
+
+            var registro = resposta[i];
+
+            labels.push(String(registro.dia).substring(0, 10));
+
+            dados.datasets[0].data.push(Number(registro.taxa_acerto));
+        }
+
+        console.log('Labels:');
+        console.log(labels);
+        console.log('Dados:');
+        console.log(dados.datasets);
+
+        const config = {
+            type: 'line',
+            data: dados,
+            options: {
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 100
+                    }
+                }
+            }
+        };
+
+        let myChart = new Chart(
+            document.getElementById('graficoDias'),
+            config
+        );
+    }
+
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
     // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
