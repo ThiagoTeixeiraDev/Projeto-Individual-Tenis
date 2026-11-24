@@ -248,6 +248,30 @@
         );
     }
 
+    function obterDadosGraficoPerguntas() {
+
+        fetch(`/dashboard/desempenhoPerguntas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                return response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoPerguntas(resposta);
+
+                    exibirPerguntaMaisDificil(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    
+
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
     // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
