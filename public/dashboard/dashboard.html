@@ -272,6 +272,59 @@
 
     
 
+    function plotarGraficoPerguntas(resposta) {
+
+        console.log('Iniciando plotagem do gráfico de perguntas...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Porcentagem de Acertos',
+                    data: [],
+                    backgroundColor: '#d7ea3a',
+                    borderColor: '#0d5334',
+                    borderWidth: 2
+                }]
+        };
+
+        for (let i = 0; i < resposta.length; i++) {
+
+            var registro = resposta[i];
+
+            labels.push("Questão " + registro.pergunta);
+
+            dados.datasets[0].data.push(Number(registro.porcentagem));
+        }
+
+        console.log('Labels:');
+        console.log(labels);
+        console.log('Dados:');
+        console.log(dados.datasets);
+
+        const config = {
+            type: 'bar',
+            data: dados,
+            options: {
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 100
+                    }
+                }
+            }
+        };
+
+        let myChart = new Chart(
+            document.getElementById('graficoTemas'),
+            config
+        );
+    }
+
+
+
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
     // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
