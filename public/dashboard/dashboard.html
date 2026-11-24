@@ -45,7 +45,7 @@
             </div>
 
             <div class="sidebar-nav">
-                <a href="../quiz.html" class="btn-nav">
+                <a href="quiz.html" class="btn-nav">
                     <h3>Quiz</h3>
                 </a>
                 <a href="./dashboard.html" class="btn-nav ativo">
@@ -57,77 +57,81 @@
                 <h3>Sair</h3>
             </div>
 
-            <div class="dash">
+        </div>
 
-                <div class="dash-banner quadra">
-                    <div>
-                        <h1>Estatísticas da Quadra</h1>
-                        <p>Acompanhe sua evolução nos quizzes, taxa de acertos e ranking entre os jogadores.</p>
+        <div class="dash">
+
+            <div class="dash-banner quadra">
+                <div>
+                    <h1>Estatísticas da Quadra</h1>
+                    <p>Acompanhe sua evolução nos quizzes, taxa de acertos e ranking entre os jogadores.</p>
+                </div>
+                <div class="btns-dash">
+                </div>
+            </div>
+
+            <div class="kpis-grid">
+                <div class="kpi-card">
+                    <span class="kpi-label">Jogadores que Responderam</span>
+                    <h2 class="kpi-valor" id="kpi_jogadores">0</h2>
+                    <span class="kpi-detalhe" id="kpi_jogadores_detalhe"></span>
+                </div>
+
+                <div class="kpi-card destaque-amarelo">
+                    <span class="kpi-label">Taxa de Acerto</span>
+                    <h2 class="kpi-valor" id="kpi_taxa">71%</h2>
+                    <span class="kpi-detalhe" id="kpi_taxa_detalhe"></span>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-label">Respostas Registradas</span>
+                    <h2 class="kpi-valor" id="kpi_respostas">0%</h2>
+                    <span class="kpi-detalhe positivo" id="kpi_respostas_detalhe"></span>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-label">Pergunta Mais Difícil</span>
+                    <h2 class="kpi-valor" id="kpi_dificil">7</h2>
+                    <span class="kpi-detalhe" id="kpi_dificil_detalhe"></span>
+                </div>
+            </div>
+
+            <div class="grafico-grid">
+
+                <div class="grafico-card grafico-largo">
+                    <div class="grafico-topo">
+                        <h3>Taxa de Acerto por Dia</h3>
+                        <span class="badge-tema">Últimos 7 dias</span>
                     </div>
-                    <div class="btns-dash">
+                    <div class="canvas-wrapper">
+                        <canvas id="graficoDias"></canvas>
                     </div>
                 </div>
 
-                <div class="kpis-grid">
-                    <div class="kpi-card">
-                        <span class="kpi-label">Jogadores que Responderam</span>
-                        <h2 class="kpi-valor" id="kpi_jogadores">0</h2>
-                        <span class="kpi-detalhe" id="kpi_jogadores_detalhe"></span>
+                <div class="grafico-card">
+                    <div class="grafico-topo">
+                        <h3>Desempenho por Pergunta</h3>
+                        <span class="badge-tema">Quiz</span>
                     </div>
-
-                    <div class="kpi-card destaque-amarelo">
-                        <span class="kpi-label">Taxa de Acerto</span>
-                        <h2 class="kpi-valor" id="kpi_taxa">71%</h2>
-                        <span class="kpi-detalhe" id="kpi_taxa_detalhe"></span>
-                    </div>
-
-                    <div class="kpi-card">
-                        <span class="kpi-label">Respostas Registradas</span>
-                        <h2 class="kpi-valor" id="kpi_respostas">0%</h2>
-                        <span class="kpi-detalhe positivo" id="kpi_respostas_detalhe"></span>
-                    </div>
-
-                    <div class="kpi-card">
-                        <span class="kpi-label">Pergunta Mais Difícil</span>
-                        <h2 class="kpi-valor" id="kpi_dificil">7</h2>
-                        <span class="kpi-detalhe" id="kpi_dificil_detalhe"></span>
+                    <div class="canvas-wrapper">
+                        <canvas id="graficoTemas"></canvas>
                     </div>
                 </div>
 
-                <div class="grafico-grid">
-
-                    <div class="grafico-card grafico-largo">
-                        <div class="grafico-topo">
-                            <h3>Taxa de Acerto por Dia</h3>
-                            <span class="badge-tema">Últimos 7 dias</span>
-                        </div>
-                        <div class="canvas-wrapper">
-                            <canvas id="graficoDias"></canvas>
-                        </div>
+                <div class="grafico-card">
+                    <div class="grafico-topo">
+                        <h3>Acertos e Erros</h3>
+                        <span class="badge-tema">Geral</span>
                     </div>
-
-                    <div class="grafico-card">
-                        <div class="grafico-topo">
-                            <h3>Desempenho por Pergunta</h3>
-                            <span class="badge-tema">Quiz</span>
-                        </div>
-                        <div class="canvas-wrapper">
-                            <canvas id="graficoTemas"></canvas>
-                        </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="graficoAcertos"></canvas>
                     </div>
-
-                    <div class="grafico-card">
-                        <div class="grafico-topo">
-                            <h3>Acertos e Erros</h3>
-                            <span class="badge-tema">Geral</span>
-                        </div>
-                        <div class="canvas-wrapper">
-                            <canvas id="graficoAcertos"></canvas>
-                        </div>
-                    </div>
-
                 </div>
 
+            </div>
+
+        </div>
+    </div>
 
 
 </body>
