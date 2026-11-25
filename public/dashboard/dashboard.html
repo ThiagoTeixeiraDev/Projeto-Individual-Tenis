@@ -66,41 +66,53 @@
                     <h1>Estatísticas da Quadra</h1>
                     <p>Acompanhe sua evolução nos quizzes, taxa de acertos e ranking entre os jogadores.</p>
                 </div>
-                <div class="btns-dash">
-                </div>
             </div>
 
+
             <div class="kpis-grid">
-                <div class="kpi-card">
-                    <span class="kpi-label">Jogadores que Responderam</span>
-                    <h2 class="kpi-valor" id="kpi_jogadores">0</h2>
-                    <span class="kpi-detalhe" id="kpi_jogadores_detalhe"></span>
-                </div>
+
 
                 <div class="kpi-card destaque-amarelo">
-                    <span class="kpi-label">Taxa de Acerto</span>
-                    <h2 class="kpi-valor" id="kpi_taxa">71%</h2>
-                    <span class="kpi-detalhe" id="kpi_taxa_detalhe"></span>
+                    <span class="kpi-label">Taxa de acerto geral</span>
+                    <h2 class="kpi-valor" id="kpi_taxa">--</h2>
+                    <span class="kpi-detalhe">Meta de aproveitamento: 70%</span>
+                    <span class="kpi-detalhe" id="kpi_taxa_detalhe">Aguardando resultados</span>
                 </div>
 
                 <div class="kpi-card">
-                    <span class="kpi-label">Respostas Registradas</span>
-                    <h2 class="kpi-valor" id="kpi_respostas">0%</h2>
-                    <span class="kpi-detalhe positivo" id="kpi_respostas_detalhe"></span>
+
+                    <span class="kpi-label">Jogadores Cadastrados</span>
+                    <h2 class="kpi-valor" id="kpi_jogadores">--</h2>
+                    <span class="kpi-detalhe"></span>
+                    <span class="kpi-detalhe" id="kpi_jogadores_detalhe">
+                    </span>
                 </div>
 
                 <div class="kpi-card">
-                    <span class="kpi-label">Pergunta Mais Difícil</span>
-                    <h2 class="kpi-valor" id="kpi_dificil">7</h2>
-                    <span class="kpi-detalhe" id="kpi_dificil_detalhe"></span>
+
+                    <span class="kpi-label">Respostas registradas</span>
+                    <h2 class="kpi-valor" id="kpi_respostas">--</h2>
+                    <span class="kpi-detalhe">Total de respostas dos jogadores</span>
+                    <span class="kpi-detalhe" id="kpi_respostas_detalhe"></span>
+                </div>
+
+                <div class="kpi-card">
+
+                    <span class="kpi-label">Pergunta mais difícil</span>
+                    <h2 class="kpi-valor" id="kpi_dificil">--</h2>
+                    <span class="kpi-detalhe">Menor aproveitamento coletivo</span>
+                    <span class="kpi-detalhe" id="kpi_dificil_detalhe">Aguardando resultados</span>
                 </div>
             </div>
 
             <div class="grafico-grid">
 
+                <h2>Evolução coletiva</h2>
+                <br>
+                <p>Acompanhe a variação do desempenhodos jogadores ao longo do tempo.</p>
                 <div class="grafico-card grafico-largo">
                     <div class="grafico-topo">
-                        <h3>Taxa de Acerto por Dia</h3>
+                        <h3>Taxa de acerto geral por dia (%)</h3>
                         <span class="badge-tema">Últimos 7 dias</span>
                     </div>
                     <div class="canvas-wrapper">
@@ -110,7 +122,8 @@
 
                 <div class="grafico-card">
                     <div class="grafico-topo">
-                        <h3>Desempenho por Pergunta</h3>
+                        <h3>Desempenho por pergunta (%)</h3>
+                        <p>Identifique os conhecimentos mais dominadose as principais dificuldades dos jogadores.</p>
                         <span class="badge-tema">Quiz</span>
                     </div>
                     <div class="canvas-wrapper">
@@ -121,6 +134,7 @@
                 <div class="grafico-card">
                     <div class="grafico-topo">
                         <h3>Acertos e Erros</h3>
+                        <p>Proporção entre respostas corretase incorretas de todos os jogadores.</p>
                         <span class="badge-tema">Geral</span>
                     </div>
                     <div class="canvas-wrapper">
@@ -153,7 +167,7 @@
 
     function obterIndicadores() {
 
-        fetch(`/dashboard/indicadores`, { cahce: 'no-store' }).then(function (response) {
+        fetch(`/dashboard/indicadores`, { cachce: 'no-store' }).then(function (response) {
             if (response.ok) {
                 return response.json().then(function (resposta) {
 
@@ -197,7 +211,7 @@
     }
 
 
-    function plotarGrafico(resposta) {
+    function plotarGraficoDias(resposta) {
         console.log('Iniciando plotagem do gráfico de desempenho por dia...');
 
         let labels = [];
@@ -270,7 +284,7 @@
             });
     }
 
-    
+
 
     function plotarGraficoPerguntas(resposta) {
 
@@ -323,6 +337,104 @@
         );
     }
 
+    function exibirPerguntaMaisDificil(resposta) {
+
+        if (resposta.length == 0) {
+
+            kpi_dificil.innerHTML = "--";
+
+            kpi_dificil_detalhe.innerHTML = "Nenhuma resposta registrada";
+
+            return;
+        }
+
+        var perguntaMaisDificil = resposta[0];
+
+        for (let i = 0; i < resposta.length; i++) {
+
+            var registro = resposta[i];
+
+            if (Number(registro.porcentagem) < Number(perguntaMaisDificil.porcentagem)) {
+
+                perguntaMaisDificil = registro;
+            }
+        }
+
+        kpi_dificil.innerHTML = perguntaMaisDificil.pergunta;
+
+        kpi_dificil_detalhe.innerHTML = perguntaMaisDificil.porcentagem + "% de acertos";
+    }
+
+    function obterDadosGraficoAcertos() {
+
+        fetch(`/dashboard/acertosErros`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                return response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoAcertos(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoAcertos(resposta) {
+
+        console.log('Iniciando plotagem do gráfico de acertos e erros...');
+
+        let labels = ['Acertos', 'Erros'];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Quantidade de Respostas',
+                    data: [],
+                    backgroundColor: [
+                        '#0d5334',
+                        '#e05252'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+        };
+
+        var registro = resposta[0];
+
+        dados.datasets[0].data.push(Number(registro.acertos || 0));
+
+        dados.datasets[0].data.push(Number(registro.erros || 0));
+
+        console.log('Labels:');
+        console.log(labels);
+        console.log('Dados:');
+        console.log(dados.datasets);
+
+        const config = {
+            type: 'doughnut',
+            data: dados,
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        };
+
+        let myChart = new Chart(
+            document.getElementById('graficoAcertos'),
+            config
+        );
+    }
+
 
 
     // O gráfico é construído com três funções:
@@ -336,7 +448,7 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+    /*function obterDadosGrafico(idAquario) {
 
         alterarTitulo(idAquario)
 
@@ -476,5 +588,5 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
-    }
+    }*/
 </script>

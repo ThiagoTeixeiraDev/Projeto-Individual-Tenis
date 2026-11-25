@@ -299,6 +299,53 @@
         }
     }
 
+    function salvarPartida() {
+
+        var idUsuario = Number(sessionStorage.ID_USUARIO);
+
+        fetch("/quiz/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                acertosServer: certas,
+                errosServer: erradas,
+                pontuacaoServer: pontuacaoFinal,
+                respostasServer: respostasQuiz
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+
+                resposta.json().then(function (resultado) {
+
+                    console.log("Partida cadastrada com sucesso!");
+                    console.log(resultado);
+
+                });
+
+            } else {
+
+                resposta.text().then(function (texto) {
+
+                    console.error(texto);
+                    alert("Erro ao salvar a partida!");
+
+                });
+
+            }
+
+        }).catch(function (erro) {
+
+            console.log(erro);
+            alert("Erro na comunicação com o servidor!");
+
+        });
+
+    }
+
     function habilitarAlternativas(trueOrFalse) {
         let opcaoEscolhida = trueOrFalse ? false : true
 
@@ -432,6 +479,7 @@
 
         document.getElementById("jogo").style.display = "none"
         document.getElementById("pontuacaoFinalJogo").style.display = "flex"
+        salvarPartida();
 
     }
 </script>
